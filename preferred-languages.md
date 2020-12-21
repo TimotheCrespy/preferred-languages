@@ -9,17 +9,22 @@ Copy the source code wherever in your computer.
 You may wish to install some dependencies like:
 - JSON (https://metacpan.org/release/MAKAMAKA/JSON-2.07)
 
+You may also wish to give the script the correct permissions:
+```bash
+chmod 700 preferred_languages
+```
+
 ## Usage
 
 ```bash
 cd [source_code_directory]
-perl main.pl [github_username]
+./preferred_languages [github_username]
 ```
 
 Example:
 ```bash
 cd Sites/preferred-languages
-perl main.pl timothecrespy
+./preferred_languages timothecrespy
 #1 PHP          1748993
 #2 Vue          42230
 #3 JavaScript   6399
