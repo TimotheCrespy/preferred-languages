@@ -20,7 +20,7 @@ my @repositories = fetchRepositoriesFor($user);
 
 my $repositoriesCount = @repositories;
 if ($repositoriesCount == 0) {
-	exitWithMessage("The GitHub user doesn't have any public repository.");
+	exitWithMessage("The GitHub user does not have any public repository.");
 }
 
 foreach my $repo (@repositories) {

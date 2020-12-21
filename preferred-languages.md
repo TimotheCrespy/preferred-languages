@@ -32,3 +32,26 @@ cd Sites/preferred-languages
 #5 SCSS         423
 ```
 
+## Troubleshooting
+
+### Internet connection
+
+As the program calls th GitHub API (https://docs.github.com/en/free-pro-team@latest/rest), you must be connected to internet.
+
+### Username not provided
+
+Providing a GitHub username is compulsory.
+```bash
+cd Sites/preferred-languages
+./preferred_languages
+Please provide a GitHub username.
+```
+
+### User does
+
+It may happen that the GitHub user does not have any public repositories.
+```bash
+cd Sites/preferred-languages
+./preferred_languages Minitsonga
+The GitHub user does not have any public repository.
+```
