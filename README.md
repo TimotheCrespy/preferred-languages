@@ -6,7 +6,9 @@ This script lets you know which are the preferred coding languages of a given Gi
 
 Copy the source code wherever in your computer.
 
-You may wish to install some dependencies like:
+This script uses Perl (https://www.perl.org/).
+
+You may wish to install some Perl dependencies like:
 - JSON (https://metacpan.org/release/MAKAMAKA/JSON-2.07)
 
 You may also wish to give the script the correct permissions:
