@@ -6,41 +6,45 @@ use lib "./Validation";
 use GithubService;
 use Handler;
 
-my %languageFrequencies = ();
+sub main {
+	my %languageFrequencies = ();
 
-# Getting user
-my $user = $ARGV[0];
+	# Getting user
+	my $user = $ARGV[0];
 
-if (!$user) {
-	exitWithMessage("Please provide a GitHub username.");
-}
+	if (!$user) {
+		exitWithMessage("Please provide a GitHub username.");
+	}
 
-# Getting repositories from API
-my @repositories = fetchRepositoriesFor($user);
+	# Getting repositories from API
+	my @repositories = fetchRepositoriesFor($user);
 
-my $repositoriesCount = @repositories;
-if ($repositoriesCount == 0) {
-	exitWithMessage("The GitHub user does not have any public repository.");
-}
+	my $repositoriesCount = @repositories;
+	if ($repositoriesCount == 0) {
+		exitWithMessage("The GitHub user does not have any public repository.");
+	}
 
-foreach my $repo (@repositories) {
-	my $repoName = $repo->{"name"};
+	foreach my $repo (@repositories) {
+		my $repoName = $repo->{"name"};
 
-	# Getting languages from API
-	my %languages = fetchLanguagesFor($user, $repoName);
+		# Getting languages from API
+		my %languages = fetchLanguagesFor($user, $repoName);
 
-	foreach my $name (keys %languages) {
-		my $languageFrequency = $languages{$name};
-		if ($languageFrequencies{$name}) {
-			$languageFrequencies{$name} = $languageFrequencies{$name} + $languageFrequency
-		} else {
-			$languageFrequencies{$name} = $languageFrequency;
+		foreach my $name (keys %languages) {
+			my $languageFrequency = $languages{$name};
+			if ($languageFrequencies{$name}) {
+				$languageFrequencies{$name} = $languageFrequencies{$name} + $languageFrequency
+			} else {
+				$languageFrequencies{$name} = $languageFrequency;
+			}
 		}
+	}
+
+	my $rank = 1;
+	foreach my $name (reverse sort { $languageFrequencies{$a} <=> $languageFrequencies{$b} } keys %languageFrequencies) {
+		printf "#%s %-12s %s", $rank++, $name, $languageFrequencies{$name};
+		print "\n";
 	}
 }
 
-my $rank = 1;
-foreach my $name (reverse sort { $languageFrequencies{$a} <=> $languageFrequencies{$b} } keys %languageFrequencies) {
-    printf "#%s %-12s %s", $rank++, $name, $languageFrequencies{$name};
-	print "\n";
-}
+main();
