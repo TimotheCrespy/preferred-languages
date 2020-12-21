@@ -13,13 +13,13 @@ You may wish to install some dependencies like:
 
 ```bash
 cd [source_code_directory]
-perl preferred_languages.pl [github_username]
+perl main.pl [github_username]
 ```
 
 Example:
 ```bash
 cd Sites/preferred-languages
-perl preferred_languages.pl timothecrespy
+perl main.pl timothecrespy
 #1 PHP          1748993
 #2 Vue          42230
 #3 JavaScript   6399
